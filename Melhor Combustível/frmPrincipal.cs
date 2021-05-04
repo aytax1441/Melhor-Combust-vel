@@ -19,36 +19,56 @@ namespace Melhor_Combustível
 
         private void btnCalcular_Click(object sender, EventArgs e)
         {
-            try
+            bool checaErro = false;
+            erro.Clear();
+            if (valEtanol.Text.Trim() == ".") {
+                erro.SetError(valEtanol, "É necessário preencher este campo.");
+                checaErro = true;
+            }
+            if (valGasolina.Text.Trim() == ".")
             {
-                funcoes fnc = new funcoes();
-                float valGas, valEtn;
-                bool opcao;
-                valEtn = float.Parse(valEtanol.Text);
-                valGas = float.Parse(valGasolina.Text);
-                opcao = rdbPadrao.Checked ? false : true;
+                erro.SetError(valGasolina, "É necessário preencher este campo.");
+                checaErro = true;
+            }
 
-                float valCalculado = fnc.fnc_calcular(valGas, opcao);
-                string br = Environment.NewLine;
-                if (valCalculado > 0)
+            if (checaErro)
+                return;
+                try
                 {
-                    if (valCalculado > valEtn)
-                        MessageBox.Show("O preço por litro da gasolina é MAIOR que o cálculo de consumo do etanol." + br + br + "Em termos financeiros, é mais rentável optar pelo Etanol!", "Retorno", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    else if (valCalculado < valEtn)
-                        MessageBox.Show("O preço por litro da gasolina é MENOR que o cálculo de consumo do etanol." + br + br + "Em termos financeiros, é mais rentável optar pela Gasolina!", "Retorno", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    funcoes fnc = new funcoes();
+                    float valGas, valEtn;
+                    bool opcao;
+                    valEtn = float.Parse(valEtanol.Text);
+                    valGas = float.Parse(valGasolina.Text);
+                    opcao = rdbPadrao.Checked ? false : true;
+
+                    float valCalculado = fnc.fnc_calcular(valGas, opcao);
+                    string br = Environment.NewLine;
+                    if (valCalculado > 0)
+                    {
+                        if (valCalculado > valEtn)
+                            MessageBox.Show("O preço por litro da gasolina é MAIOR que o cálculo de consumo do etanol." + br + br + "Em termos financeiros, é mais rentável optar pelo Etanol!", "Retorno", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else if (valCalculado < valEtn)
+                            MessageBox.Show("O preço por litro da gasolina é MENOR que o cálculo de consumo do etanol." + br + br + "Em termos financeiros, é mais rentável optar pela Gasolina!", "Retorno", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else
+                            MessageBox.Show("O preço por litro da gasolina é IGUAL que o cálculo de consumo do etanol.", "Retorno", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                     else
-                        MessageBox.Show("O preço por litro da gasolina é IGUAL que o cálculo de consumo do etanol.", "Retorno", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    {
+                        MessageBox.Show("Algum valor não foi preenchido corretamente no consumo. Favor se atentar ao preenchimento.", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Algum valor não foi preenchido corretamente no consumo. Favor se atentar ao preenchimento.", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    string br = Environment.NewLine;
+                    MessageBox.Show("Ocorreu um erro:" + br + br + ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            catch(Exception ex)
-            {
-                string br = Environment.NewLine;
-                MessageBox.Show("Ocorreu um erro:" + br + br + ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            valEtanol.PromptChar = '0';
+            valGasolina.PromptChar = '0';
         }
     }
 }

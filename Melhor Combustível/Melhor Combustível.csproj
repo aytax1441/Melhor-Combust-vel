@@ -5,6 +5,7 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>Melhor_Combustível</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>gas-pump.ico</ApplicationIcon>
   </PropertyGroup>
 
 </Project>

@@ -29,6 +29,8 @@ namespace Melhor_Combustível
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.valEtanol = new System.Windows.Forms.MaskedTextBox();
             this.valGasolina = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,7 +41,9 @@ namespace Melhor_Combustível
             this.btnCalcular = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.erro = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpOpcoes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.erro)).BeginInit();
             this.SuspendLayout();
             // 
             // valEtanol
@@ -143,6 +147,11 @@ namespace Melhor_Combustível
             this.label4.TabIndex = 7;
             this.label4.Text = "Combustível";
             // 
+            // erro
+            // 
+            this.erro.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.erro.ContainerControl = this;
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -156,12 +165,17 @@ namespace Melhor_Combustível
             this.Controls.Add(this.label1);
             this.Controls.Add(this.valGasolina);
             this.Controls.Add(this.valEtanol);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Combustível";
+            this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.grpOpcoes.ResumeLayout(false);
             this.grpOpcoes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.erro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,6 +193,7 @@ namespace Melhor_Combustível
         private System.Windows.Forms.Button btnCalcular;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ErrorProvider erro;
     }
 }
 

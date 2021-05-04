@@ -29,6 +29,7 @@ namespace Melhor_Combustível
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsumo));
             this.label1 = new System.Windows.Forms.Label();
             this.txtConsEtanol = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -118,10 +119,13 @@ namespace Melhor_Combustível
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtConsEtanol);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmConsumo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmConsumo";
+            this.Text = "Dados de Consumo";
             this.ResumeLayout(false);
             this.PerformLayout();
 
